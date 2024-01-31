@@ -149,19 +149,11 @@ public class UserServiceImpl implements UserService {
     public void Mail(String to, String tempCode) {
     	
 		String host = "smtp.naver.com";
-	    String subject = "[SSGTARBUCKS] 비밀번호 인증코드 발송";  //메일제목
+	    String subject = "[비밀번호 찾기 안내] 인증코드 발송";  //메일제목
 	    String from = "jungyun5535@naver.com"; //보내는 메일주소 ////////////수정필요
 	    String fromName = "SSGtarbucks Korea";   //보내는 사람이름
-	    String content =
-	    		"안녕하세요, 사랑하는 SSGtarbucks 직원님!\n" +
-	    		"SSGTARBUCKS 비밀번호 재설정을 위한 인증코드를 보내드립니다. 만약 비밀번호 인증코드를 요청하지 않았다면 이 이메일을 무시해주시기 바랍니다.\n\n" +
-	            "     비밀번호 인증코드 :    " + tempCode + "\n\n" +
-	    		"인증코드 입력 시 비밀번호는 직원코드로 초기화됩니다.\n\n"+
-	            "도움이 필요하시거나 다른 문의사항이 있다면 언제든지 지원팀에 문의하시거나 SSGTARBUCKS로 연락해주세요:) @SSGTARBUCKS.\n\n" +
-	            "              감사합니다!\n" +
-	            "SSGTARBUCKS 팀 드림";
-	    
-	    
+	    String content = "인증코드는 [   "+tempCode+"   ]입니다. 인증코등 입력 시 비밀번호가 사원번호로 초기화 됩니다.";   //메일 내용
+
 	   try{
 	     //프로퍼티 값 인스턴스 생성과 기본세션(SMTP 서버 호스트 지정)
 	     Properties props = new Properties();
@@ -185,6 +177,7 @@ public class UserServiceImpl implements UserService {
 	     props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 	     props.put("mail.smtp.socketFactory.fallback", "false");
 	   
+
 
 	     Authenticator auth = sendMail;
 	     Session mailSession = Session.getDefaultInstance(props,auth);
